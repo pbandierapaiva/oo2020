@@ -83,22 +83,68 @@ class Node():
 				return self
 			acha = self.noD.pai(no)
 		return acha
-			
-			
+	def filhoMaisDireita(self):
+		if self.noD == None:
+			return self
+		return self.noD.filhoMaisDireita()
+
+		
+	def apaga(self, no):
+		pai = self.pai(	no )
+		lado = ''
+		if pai.noD == no:
+			lado='D'
+		if pai.noE == no:
+			lado='E'
+		if no.noD is None and no.noE is None:	
+			if lado=='D':
+				pai.noD = None
+			if lado=='E':
+				pai.noE = None
+		else:
+			if no.noD == None:
+				if lado=='D':	
+					pai.noD = no.noE
+				if lado=='E':	
+					pai.noE = no.noE
+			if no.noE == None:
+				if lado=='D':	
+					pai.noD = no.noD
+				if lado=='E':	
+					pai.noE = no.noD
+			#tem filho para os dois lados
+			if no.noD and  no.noE:
+				fiMD = no.noE.filhoMaisDireita()
+				self.pai( fiMD ).noD = fiMD.noE
+				
+				fiMD.noE = no.noE
+				fiMD.noD = no.noD
+				if lado == 'D':
+					pai.noD = fiMD
+				else:
+					pai.noE = fiMD
+		del no
+				
+				
+	
+				
 			
 		
 		
     
     		
 bst = Node(12) 		#                     12           
-bst.add(14)		#                         14
-bst.add(13)		#                      13    34
-bst.add(34)		#                    13    15   54
-bst.add(15)		#                            17    64
+bst.add(14)		#                             14
+bst.add(13)		#                          13    34
+bst.add(34)		#                       13    15     54
+bst.add(15)		#                                17     64
 bst.add(54)
 bst.add(13)
 bst.add(64)
 bst.add(17)
+
+#bst.bylevel()
+
 #bst.inorder()
 #print()
 #bst.revinorder()
@@ -109,7 +155,11 @@ bst.add(17)
 
 
 
-
+#                     12           
+#                                14
+#                          13          34
+#                       13    15             54
+#                                17              64
 
 
 
