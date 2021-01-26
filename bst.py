@@ -133,33 +133,27 @@ class Node():
 		
     
     		
-bst = Node(12) 		#                     12           
-bst.add(14)		#                             14
-bst.add(13)		#                          13    34
-bst.add(34)		#                       13    15     54
-bst.add(15)		#                                17     64
+bst = Node(12) 		
+bst.add(14)		
+bst.add(13)		
+bst.add(34)		
+bst.add(15)
 bst.add(54)
 bst.add(13)
 bst.add(64)
 bst.add(17)
 
-#bst.bylevel()
 
-#bst.inorder()
-#print()
-#bst.revinorder()
-
-
-
-
-
-
-
-#                     12           
+#                      +
+#                     12
+#                      +----------+
 #                                14
+#                           +-----+-----+
 #                          13          34
-#                       13    15             54
-#                                17              64
+#                       +-----+         +----+
+#                      13     15              54
+#                              +--+            +--+
+#                                 17              64
 
 
 
